@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom, #f9c5d1, #d1e0ff);
+      color: #444;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .section {
+      display: none;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #ff5e99;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    button {
+      font-size: 1.3rem;
+      padding: 12px 25px;
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff6fa8;
+    }
+
+    .frame {
+      margin: 30px auto;
+      width: 300px;
+      height: 380px;
+      border: 8px solid #ffcce6;
+      border-radius: 20px;
+      padding: 10px;
+      background: #fff7fb;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .decorations::before {
+      content: "🌸💗🌸";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+    }
+
+    .bottom-gif img {
+      width: 180px;
+      margin-top: 25px;
+    }
+
+    /* Slider styles */
+ #slider {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Adjust this height as needed */
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex; /* Center images */
+  justify-content: center;
+  align-items: center;
+}
+
+#slider img.slide {
+  max-width: 100%; /* Scale image to fit width */
+  max-height: 100%; /* Scale image to fit height */
+  object-fit: contain; /* Ensure the entire image is visible */
+  opacity: 0;
+  margin-top: 90px;
+  transition: opacity 1s ease-in-out;
+  position: absolute; /* Stack images */
+}
+
+#slider img.active {
+  opacity: 1;
+  z-index: 1;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Audio -->
+  <audio autoplay loop>
+    <source src="Rose_Ft_Bruno_Mars_-_APT.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <!-- Section 1 -->
+    <div class="section active" id="section1">
+      <h1>Guess what's after 15 days? 🤔</h1>
+      <button onclick="revealSurprise()">Click to know 💖</button>
+      <div class="bottom-gif">
+        <img src="https://media.giphy.com/media/0WWHx07XZxWAbwvSya/giphy.gif?cid=ecf05e47acu0mh5gbenpiv4w10s98whwrgs1gqgvfo730ain&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Gift GIF">
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section" id="section2">
+      <h2>It's my Luv's Birthday coming soon! 💕🎂</h2>
+      <div class="frame">
+        <div class="decorations"></div>
+        <div id="slider">
+          <img class="slide active" src="WhatsApp Image 2025-05-13 at 22.47.10_2d9ed1aa.jpg" alt="Photo 1" />
+          <img class="slide" src="WhatsApp Image 2025-05-13 at 22.46.26_47488082.jpg" alt="Photo 2" />
+          <img class="slide" src="img.jpg" alt="Photo 3" />
+        </div>
+      </div>
+      <div class="bottom-gif">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2h6dG40cjMzNXV2aGx5Y3A1c2tybGZma3Y5ZG5iNXhoZTVhbzh6bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/EN07uCL8sMNj26GO2g/giphy.gif" alt="Party GIF" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function revealSurprise() {
+      document.getElementById('section1').classList.remove('active');
+      document.getElementById('section2').classList.add('active');
+    }
+
+    // Auto slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll("#slider .slide");
+
+    setInterval(() => {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 3000);
+  </script>
+
+</body>
+</html>
